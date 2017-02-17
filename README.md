@@ -5,6 +5,6 @@
 ## Creating the image
 
 ```
-docker build .
+docker build -t m68k-amigaos-bebbo .
 ```
 
