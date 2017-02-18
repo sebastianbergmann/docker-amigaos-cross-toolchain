@@ -42,7 +42,7 @@ $ docker run -v /home/sb:/host -it m68k-amigaos-bebbo \
 ```
 
 
-### Execution (using Docker-ized FS-USE emulation)
+### Execution (using Docker-ized FS-UAE emulation)
 
 The following assumes that the `hello` executable created in the previous step has been copied to `$HOME/.config/fs-uae/Data/hello` on the host.
 
