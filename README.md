@@ -13,7 +13,9 @@ $ docker build -t m68k-amigaos-bebbo .
 
 ### C
 
-#### AmigaOS Style
+#### AmigaOS C API
+
+`hello.c` from [Radosław Kujawa](https://github.com/Sakura-IT/Amiga-programming-examples/tree/master/C/hello-world-amiga):
 
 ```c
 #include <proto/exec.h>
@@ -37,7 +39,9 @@ int main(int argc, void *argv[])
 ```
 
 
-#### POSIX Style
+#### Standard C Library
+
+`hello.c` from [Radosław Kujawa](https://github.com/Sakura-IT/Amiga-programming-examples/tree/master/C/hello-world):
 
 ```c
 #include <stdio.h>
@@ -60,6 +64,8 @@ m68k-amigaos-gcc /host/hello.c -o /host/hello -noixemul
 
 
 ### Assembly
+
+`hello.s` from [Radosław Kujawa](https://github.com/Sakura-IT/Amiga-programming-examples/tree/master/ASM/HelloWorld):
 
 ```assembly
 SysBase      = 4
