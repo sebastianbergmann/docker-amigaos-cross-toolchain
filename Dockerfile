@@ -29,7 +29,22 @@ RUN cd /root/amigaos-cross-toolchain && \
     ./toolchain-m68k --prefix=/opt/m68k-amigaos build
 
 # Cleanup
-RUN rm -rf /root/amigaos-cross-toolchain
+RUN rm -rf /root/amigaos-cross-toolchain && \
+    apt-get purge -y \
+    autoconf \
+    bison \
+    g++ \
+    gcc \
+    gettext \
+    git \
+    gperf \
+    libgmp-dev \
+    libmpc-dev \
+    libmpfr-dev \
+    libncurses5-dev \
+    make \
+    python-dev \
+    && apt-get -y autoremove
 
 # Add /opt/m68k-amigaos/bin to $PATH
 ENV PATH /opt/m68k-amigaos/bin:$PATH
