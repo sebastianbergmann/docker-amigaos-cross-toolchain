@@ -11,7 +11,9 @@ $ docker build -t m68k-amigaos-bebbo .
 
 ## "Hello world!" Example
 
-### AmigaOS Style
+### C
+
+#### AmigaOS Style
 
 ```c
 #include <proto/exec.h>
@@ -19,23 +21,23 @@ $ docker build -t m68k-amigaos-bebbo .
 
 int main(int argc, void *argv[])
 {
-	struct Library *SysBase;
-	struct Library *DOSBase;
+    struct Library *SysBase;
+    struct Library *DOSBase;
 
-	SysBase = *((struct Library **)4UL);
-	DOSBase = OpenLibrary("dos.library", 0);
+    SysBase = *((struct Library **)4UL);
+    DOSBase = OpenLibrary("dos.library", 0);
 
-	if (DOSBase) {
-		Write(Output(), "Hello world!\n", 13);
-		CloseLibrary(DOSBase);
-	}
+    if (DOSBase) {
+        Write(Output(), "Hello world!\n", 13);
+        CloseLibrary(DOSBase);
+    }
 
-	return(0);
+    return(0);
 }
 ```
 
 
-### POSIX Style
+#### POSIX Style
 
 ```c
 #include <stdio.h>
@@ -49,7 +51,7 @@ int main()
 ```
 
 
-### Compilation
+#### Compilation
 
 ```
 $ docker run -v /home/sb:/host -it m68k-amigaos-bebbo \
@@ -58,9 +60,46 @@ $ docker run -v /home/sb:/host -it m68k-amigaos-bebbo \
 ```
 
 
+### Assembly
+
+```assembly
+SysBase      = 4
+OpenLibrary  = -552
+CloseLibrary = -414
+PutStr       = -948
+
+             LEA     DosName,A1
+             MOVEQ   #36,D0
+             MOVEA.L SysBase,A6
+             JSR     OpenLibrary(A6)
+
+             TST.L   D0
+             BEQ.S   NoDos
+
+             MOVE.L  #Hello,D1
+             MOVEA.L D0,A6
+             JSR     PutStr(A6)
+
+             MOVEA.L A6,A1
+             MOVEA.L SysBase,A6
+             JSR     CloseLibrary(A6)
+
+NoDos        CLR.L   D0
+             RTS
+
+DosName      DC.B    "dos.library",0
+Hello        DC.B    "Hello World!",10,0
+```
+
+```
+$ docker run -v /home/sb:/host -it m68k-amigaos-bebbo \
+/opt/m68k-amigaos/bin/vasm \
+-Fhunkexe -o /host/hello /host/hello.s
+```
+
 ### Execution (using Docker-ized FS-UAE emulation)
 
-The following assumes that the `hello` executable created in the previous step has been copied to `$HOME/.config/fs-uae/Data/hello` on the host.
+The following assumes that the `hello` executable created in one of the previous steps has been copied to `$HOME/.config/fs-uae/Data/hello` on the host.
 
 ```
 $ docker run -it \
