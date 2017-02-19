@@ -11,6 +11,8 @@ $ docker build -t m68k-amigaos-bebbo .
 
 ## "Hello world!" Example
 
+### AmigaOS Style
+
 ```c
 #include <proto/exec.h>
 #include <proto/dos.h>
@@ -29,6 +31,20 @@ int main(int argc, void *argv[])
 	}
 
 	return(0);
+}
+```
+
+
+### POSIX Style
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello world!\n");
+
+    return(0);
 }
 ```
 
