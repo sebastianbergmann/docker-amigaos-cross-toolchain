@@ -31,3 +31,6 @@ RUN cd /root/amigaos-cross-toolchain && \
 # Cleanup
 RUN rm -rf /root/amigaos-cross-toolchain
 
+# Add /opt/m68k-amigaos/bin to $PATH
+ENV PATH /opt/m68k-amigaos/bin:$PATH
+

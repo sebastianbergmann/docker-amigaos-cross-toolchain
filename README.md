@@ -55,8 +55,7 @@ int main()
 
 ```
 $ docker run -v /home/sb:/host -it m68k-amigaos-bebbo \
-/opt/m68k-amigaos/bin/m68k-amigaos-gcc \
-/host/hello.c -o /host/hello -noixemul
+m68k-amigaos-gcc /host/hello.c -o /host/hello -noixemul
 ```
 
 
@@ -93,8 +92,7 @@ Hello        DC.B    "Hello World!",10,0
 
 ```
 $ docker run -v /home/sb:/host -it m68k-amigaos-bebbo \
-/opt/m68k-amigaos/bin/vasm \
--Fhunkexe -o /host/hello /host/hello.s
+vasm -Fhunkexe -o /host/hello /host/hello.s
 ```
 
 ### Execution (using Docker-ized FS-UAE emulation)
