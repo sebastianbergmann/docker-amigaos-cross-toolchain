@@ -65,7 +65,7 @@ m68k-amigaos-gcc /host/hello.c -o /host/hello -noixemul
 
 ### Assembly
 
-`hello.s` from [Radosław Kujawa](https://github.com/Sakura-IT/Amiga-programming-examples/tree/master/ASM/HelloWorld):
+`hello.s` from [Grzegorz Kraszewski](https://github.com/Sakura-IT/Amiga-programming-examples/tree/master/ASM/HelloWorld):
 
 ```assembly
 SysBase      = 4
