@@ -2,12 +2,8 @@
 
 `Dockerfile` for [Stefan "Bebbo" Franke](https://github.com/bebbo)'s [fork](https://github.com/bebbo/amigaos-cross-toolchain) of [Krystian Bacławski](https://github.com/cahirwpz)'s [AmigaOS Cross-Compiler Toolchain](https://github.com/cahirwpz/amigaos-cross-toolchain).
 
+A ready-to-use image built from this Dockerfile is available on [Docker Hub](https://hub.docker.com/r/sebastianbergmann/m68k-amigaos-bebbo/).
 
-## Creating the image
-
-```
-$ docker build -t m68k-amigaos-bebbo .
-```
 
 ## "Hello world!" Example
 
@@ -58,7 +54,7 @@ int main()
 #### Compilation
 
 ```
-$ docker run -v /home/sb:/host -it m68k-amigaos-bebbo \
+$ docker run -v /home/sb:/host -it sebastianbergmann/m68k-amigaos-bebbo \
 m68k-amigaos-gcc /host/hello.c -o /host/hello -noixemul
 ```
 
@@ -97,7 +93,7 @@ Hello        DC.B    "Hello World!",10,0
 ```
 
 ```
-$ docker run -v /home/sb:/host -it m68k-amigaos-bebbo \
+$ docker run -v /home/sb:/host -it sebastianbergmann/m68k-amigaos-bebbo \
 vasm -Fhunkexe -o /host/hello /host/hello.s
 ```
 
