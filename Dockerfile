@@ -38,9 +38,6 @@ RUN apt-get update && apt-get install -y \
     gettext \
     git \
     gperf \
-    libgmp-dev \
-    libmpc-dev \
-    libmpfr-dev \
     libncurses5-dev \
     make \
     python-dev \
