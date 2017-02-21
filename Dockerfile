@@ -10,8 +10,12 @@ RUN apt-get update && apt-get install -y \
     gettext \
     git \
     gperf \
+    libgmp10 \
+    libgmpxx4ldbl \
     libgmp-dev \
+    libmpc3 \
     libmpc-dev \
+    libmpfr4 \
     libmpfr-dev \
     libncurses5-dev \
     make \
@@ -38,6 +42,9 @@ RUN apt-get update && apt-get install -y \
     gettext \
     git \
     gperf \
+    libgmp-dev \
+    libmpc-dev \
+    libmpfr-dev \
     libncurses5-dev \
     make \
     python-dev \
