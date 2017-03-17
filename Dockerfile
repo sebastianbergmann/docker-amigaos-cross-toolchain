@@ -1,5 +1,5 @@
-# Ubuntu 16.04 ("Xenial Xerus") 32-bit
-FROM daald/ubuntu32:xenial
+# Ubuntu 17.04 ("Zesty Zapus") 32-bit
+FROM i386/ubuntu:zesty
 
 # Update base system and install build dependencies
 RUN apt-get update && apt-get install -y \
