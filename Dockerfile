@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y \
     cd /root && \
     git clone https://github.com/bebbo/amigaos-cross-toolchain.git && \
     cd /root/amigaos-cross-toolchain && \
-    git checkout -qf 4b211d94efb842523656192fbc0596d18de1b8ed && \
+    git checkout -qf f8840349b6313a72606391c36b1bce21b4371ebf && \
 
 # Build M68K AmigaOS Cross-Compilation Toolchain
     ./toolchain-m68k --prefix=/opt/m68k-amigaos build && \
