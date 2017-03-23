@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="docker-amigaos-cross-toolchain" default="build">
+    <target name="clean">
+        <delete dir="${basedir}/test"/>
+    </target>
+
+    <target name="build">
+        <exec executable="docker" taskname="docker">
+            <arg value="build"/>
+            <arg value="--tag"/>
+            <arg value="sebastianbergmann/m68k-amigaos-bebbo:latest"/>
+            <arg path="${basedir}"/>
+        </exec>
+    </target>
+
+    <target name="test" depends="build">
+        <mkdir dir="${basedir}/test"/>
+
+        <get src="https://raw.githubusercontent.com/Sakura-IT/Amiga-programming-examples/master/C/hello-world-amiga/hello.c"
+             dest="${basedir}/test/hello.c"
+             skipexisting="true"/>
+
+        <get src="https://raw.githubusercontent.com/Sakura-IT/Amiga-programming-examples/master/ASM/HelloWorld/helloworld.s"
+             dest="${basedir}/test/hello.s"
+             skipexisting="true"/>
+
+        <exec executable="docker" taskname="docker">
+            <arg value="run"/>
+            <arg value="--volume"/>
+            <arg value="${basedir}/test:/host"/>
+            <arg value="sebastianbergmann/m68k-amigaos-bebbo:latest"/>
+            <arg value="m68k-amigaos-gcc"/>
+            <arg value="/host/hello.c"/>
+            <arg value="-o"/>
+            <arg value="/host/hello"/>
+            <arg value="-noixemul"/>
+        </exec>
+
+        <exec executable="docker" taskname="docker">
+            <arg value="run"/>
+            <arg value="--volume"/>
+            <arg value="${basedir}/test:/host"/>
+            <arg value="sebastianbergmann/amitools:latest"/>
+            <arg value="vamos"/>
+            <arg value="-C"/>
+            <arg value="68020"/>
+            <arg value="/host/hello"/>
+        </exec>
+
+        <delete file="${basedir}/test/hello"/>
+
+        <exec executable="docker" taskname="docker">
+            <arg value="run"/>
+            <arg value="--volume"/>
+            <arg value="${basedir}/test:/host"/>
+            <arg value="sebastianbergmann/m68k-amigaos-bebbo:latest"/>
+            <arg value="vasm"/>
+            <arg value="-Fhunkexe"/>
+            <arg value="-o"/>
+            <arg value="/host/hello"/>
+            <arg value="/host/hello.s"/>
+        </exec>
+
+        <exec executable="docker" taskname="docker">
+            <arg value="run"/>
+            <arg value="--volume"/>
+            <arg value="${basedir}/test:/host"/>
+            <arg value="sebastianbergmann/amitools:latest"/>
+            <arg value="vamos"/>
+            <arg value="-C"/>
+            <arg value="68020"/>
+            <arg value="/host/hello"/>
+        </exec>
+
+        <delete file="${basedir}/test/hello"/>
+    </target>
+</project>
+
