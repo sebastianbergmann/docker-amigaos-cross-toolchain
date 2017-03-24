@@ -54,8 +54,8 @@ int main()
 #### Compilation
 
 ```
-$ docker run -v /home/sb:/host -it sebastianbergmann/m68k-amigaos-bebbo \
-m68k-amigaos-gcc /host/hello.c -o /host/hello -noixemul
+$ docker run -v $HOME:/host -it sebastianbergmann/m68k-amigaos-bebbo \
+  m68k-amigaos-gcc /host/hello.c -o /host/hello -noixemul
 ```
 
 
@@ -93,24 +93,28 @@ Hello        DC.B    "Hello World!",10,0
 ```
 
 ```
-$ docker run -v /home/sb:/host -it sebastianbergmann/m68k-amigaos-bebbo \
-vasm -Fhunkexe -o /host/hello /host/hello.s
+$ docker run -v $HOME:/host -it sebastianbergmann/m68k-amigaos-bebbo \
+  vasm -Fhunkexe -o /host/hello /host/hello.s
 ```
 
-### Execution (using Docker-ized FS-UAE emulation)
+### Execution
 
-The following assumes that the `hello` executable created in one of the previous steps has been copied to `$HOME/.config/fs-uae/Data/hello` on the host.
+#### Docker-ized Emulation using FS-UAE
+
+The `docker-execute-amiga` script used below can be downloaded from [here](https://raw.githubusercontent.com/sebastianbergmann/docker-execute-amiga/master/docker-execute-amiga.sh).
 
 ```
-$ docker run -it \
-  -e DISPLAY=$DISPLAY \
-  -v /tmp/.X11-unix:/tmp/.X11-unix \
-  -v $HOME/.config/fs-uae/:/home/fsuae/config \
-  jamesnetherton/fs-uae \
-  --amiga_model=A1200 \
-  --hard_drive_0=/home/fsuae/config/Harddrives/workbench-311.hdf \
-  --hard_drive_1=/home/fsuae/config/Data
+$ docker-execute-amiga helloworld
 ```
 
 ![Screenshot](screenshot.png)
+
+
+#### Docker-ized Emulation using Virtual AmigaOS (vamos)
+
+```
+$ docker run -v $HOME:/host sebastianbergmann/amitools:latest \
+  vamos -C 68020 /host/hello
+Hello world!
+```
 
