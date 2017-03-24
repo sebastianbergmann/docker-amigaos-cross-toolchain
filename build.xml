@@ -36,7 +36,7 @@
             <arg value="-noixemul"/>
         </exec>
 
-        <exec executable="docker" taskname="docker">
+        <exec executable="docker" taskname="docker" outputproperty="hello.c">
             <arg value="run"/>
             <arg value="--volume"/>
             <arg value="${basedir}/test:/host"/>
@@ -46,6 +46,14 @@
             <arg value="68020"/>
             <arg value="/host/hello"/>
         </exec>
+
+        <fail message="hello.c could not be compiled and executed">
+            <condition>
+                <not>
+                    <equals arg1="${hello.c}" arg2="Hello world!"/>
+                </not>
+            </condition>
+        </fail>
 
         <delete file="${basedir}/test/hello"/>
 
@@ -61,7 +69,7 @@
             <arg value="/host/hello.s"/>
         </exec>
 
-        <exec executable="docker" taskname="docker">
+        <exec executable="docker" taskname="docker" outputproperty="hello.s">
             <arg value="run"/>
             <arg value="--volume"/>
             <arg value="${basedir}/test:/host"/>
@@ -71,6 +79,14 @@
             <arg value="68020"/>
             <arg value="/host/hello"/>
         </exec>
+
+        <fail message="hello.s could not be compiled and executed">
+            <condition>
+                <not>
+                    <equals arg1="${hello.s}" arg2="Hello World!"/>
+                </not>
+            </condition>
+        </fail>
 
         <delete file="${basedir}/test/hello"/>
     </target>
