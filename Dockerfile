@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y \
     git checkout -qf 4ffeec603804a518ca743a47b59bb4afa3c2ae17 && \
 
 # Build M68K AmigaOS Cross-Compilation Toolchain
-    ./toolchain-m68k --prefix=/opt/m68k-amigaos build && \
+    ./toolchain-m68k --prefix=/opt/m68k-amigaos --threads=4 build && \
 
 # Cleanup
     cd / && \
