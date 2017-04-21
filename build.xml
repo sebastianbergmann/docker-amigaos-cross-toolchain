@@ -26,6 +26,7 @@
 
         <exec executable="docker" taskname="docker">
             <arg value="run"/>
+            <arg value="--rm"/>
             <arg value="--volume"/>
             <arg value="${basedir}/test:/host"/>
             <arg value="sebastianbergmann/m68k-amigaos-bebbo:latest"/>
@@ -38,6 +39,7 @@
 
         <exec executable="docker" taskname="docker" outputproperty="hello.c">
             <arg value="run"/>
+            <arg value="--rm"/>
             <arg value="--volume"/>
             <arg value="${basedir}/test:/host"/>
             <arg value="sebastianbergmann/amitools:latest"/>
@@ -59,6 +61,7 @@
 
         <exec executable="docker" taskname="docker">
             <arg value="run"/>
+            <arg value="--rm"/>
             <arg value="--volume"/>
             <arg value="${basedir}/test:/host"/>
             <arg value="sebastianbergmann/m68k-amigaos-bebbo:latest"/>
@@ -71,6 +74,7 @@
 
         <exec executable="docker" taskname="docker" outputproperty="hello.s">
             <arg value="run"/>
+            <arg value="--rm"/>
             <arg value="--volume"/>
             <arg value="${basedir}/test:/host"/>
             <arg value="sebastianbergmann/amitools:latest"/>
