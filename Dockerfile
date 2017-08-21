@@ -5,6 +5,7 @@ FROM i386/ubuntu:zesty
 RUN apt-get update && apt-get install -y \
     autoconf \
     bison \
+    flex \
     g++ \
     gcc \
     gettext \
@@ -37,6 +38,7 @@ RUN apt-get update && apt-get install -y \
     apt-get purge -y \
     autoconf \
     bison \
+    flex \
     g++ \
     gcc \
     gettext \
