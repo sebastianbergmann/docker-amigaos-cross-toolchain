@@ -1,5 +1,5 @@
-# Ubuntu 17.04 ("Zesty Zapus") 32-bit
-FROM i386/ubuntu:zesty
+# Ubuntu 17.10 32-bit
+FROM i386/ubuntu:17.10
 
 # Update base system and install build dependencies
 RUN apt-get update && apt-get install -y \
