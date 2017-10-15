@@ -1,7 +1,5 @@
-# Ubuntu 17.10 32-bit
 FROM i386/ubuntu:17.10
 
-# Update base system and install build dependencies
 RUN apt-get update && apt-get install -y \
     autoconf \
     bison \
@@ -22,17 +20,11 @@ RUN apt-get update && apt-get install -y \
     make \
     python-dev \
     && rm -rf /var/lib/apt/lists/* && \
-
-# Clone amigaos-cross-toolchain.git repository (at last known good revision)
     cd /root && \
     git clone https://github.com/bebbo/amigaos-cross-toolchain.git && \
     cd /root/amigaos-cross-toolchain && \
     git checkout -qf 6c27555fab2dde7e7a2f08ad7c77162580291ce3 && \
-
-# Build M68K AmigaOS Cross-Compilation Toolchain
     ./toolchain-m68k --prefix=/opt/m68k-amigaos --threads=4 build && \
-
-# Cleanup
     cd / && \
     rm -rf /root/amigaos-cross-toolchain && \
     apt-get purge -y \
@@ -52,6 +44,5 @@ RUN apt-get update && apt-get install -y \
     python-dev \
     && apt-get -y autoremove
 
-# Add /opt/m68k-amigaos/bin to $PATH
 ENV PATH /opt/m68k-amigaos/bin:$PATH
 
