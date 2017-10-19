@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
     cd /root && \
     git clone https://github.com/bebbo/amigaos-cross-toolchain.git && \
     cd /root/amigaos-cross-toolchain && \
-    git checkout -qf 6c27555fab2dde7e7a2f08ad7c77162580291ce3 && \
+    git checkout -qf 88a22418fe4f56363934234252416d24fbc6c781 && \
     ./toolchain-m68k --prefix=/opt/m68k-amigaos --threads=4 build && \
     cd / && \
     rm -rf /root/amigaos-cross-toolchain && \
