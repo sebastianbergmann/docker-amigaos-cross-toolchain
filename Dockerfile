@@ -1,4 +1,4 @@
-FROM i386/ubuntu:18.04
+FROM i386/ubuntu:17.10
 
 RUN apt-get update && apt-get install -y \
     autoconf \
