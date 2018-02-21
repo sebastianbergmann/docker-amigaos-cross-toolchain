@@ -1,4 +1,4 @@
-FROM i386/ubuntu:17.10
+FROM i386/ubuntu:18.04
 
 RUN apt-get update && apt-get install -y \
     autoconf \
@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     libgmp-dev \
     libmpc3 \
     libmpc-dev \
-    libmpfr4 \
+    libmpfr6 \
     libmpfr-dev \
     libncurses5-dev \
     make \
